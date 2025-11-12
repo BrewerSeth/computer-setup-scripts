@@ -9,8 +9,9 @@ print("Now attempting to update all winget programs...")
 # -h = silent installation (no user prompts)
 # --accept-package-agreements automatically accepts license agreements
 # --accept-source-agreements automatically accepts source agreements
+# --disable-interactivity = disable all interactive prompts
 result = subprocess.run(
-    ["winget", "upgrade", "--all", "-h", "--accept-package-agreements", "--accept-source-agreements"],
+    ["winget", "upgrade", "--all", "-h", "--accept-package-agreements", "--accept-source-agreements", "--disable-interactivity"],
     capture_output=True,
     text=True
 )

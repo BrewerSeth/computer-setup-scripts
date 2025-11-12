@@ -38,10 +38,12 @@ for program_id in programs:
     # -h = silent installation (no user prompts)
     # --accept-package-agreements = auto-accept package licenses
     # --accept-source-agreements = auto-accept source agreements
+    # --force = force installation even if already installed
+    # --disable-interactivity = disable all interactive prompts
     # capture_output=True captures what winget prints so we can check it
     # text=True makes the output a string instead of bytes
     result = subprocess.run(
-        ["winget", "install", "-e", "--id", program_id, "-h", "--accept-package-agreements", "--accept-source-agreements"],
+        ["winget", "install", "-e", "--id", program_id, "-h", "--accept-package-agreements", "--accept-source-agreements", "--disable-interactivity"],
         capture_output=True,
         text=True
     )
@@ -75,7 +77,7 @@ print("="*50)
 # Now update all programs to ensure they are on the latest version
 print("\nNow updating all installed programs to latest versions...")
 update_result = subprocess.run(
-    ["winget", "upgrade", "--all", "-h", "--accept-package-agreements", "--accept-source-agreements"],
+    ["winget", "upgrade", "--all", "-h", "--accept-package-agreements", "--accept-source-agreements", "--disable-interactivity"],
     capture_output=True,
     text=True
 )
