@@ -29,10 +29,15 @@ for program_id in programs:
     print(f"\nInstalling {program_id} ({counter}/{len(programs)})....")
     
     # Run the winget install command
+    # -e = exact match on package ID
+    # --id = specify package by ID
+    # -h = silent installation (no user prompts)
+    # --accept-package-agreements = auto-accept package licenses
+    # --accept-source-agreements = auto-accept source agreements
     # capture_output=True captures what winget prints so we can check it
     # text=True makes the output a string instead of bytes
     result = subprocess.run(
-        ["winget", "install", "-e", "--id", program_id, "--accept-package-agreements", "--accept-source-agreements"],
+        ["winget", "install", "-e", "--id", program_id, "-h", "--accept-package-agreements", "--accept-source-agreements"],
         capture_output=True,
         text=True
     )
