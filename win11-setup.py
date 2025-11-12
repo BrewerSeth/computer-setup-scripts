@@ -22,6 +22,10 @@ print(f"Now attempting to install {len(programs)} programs via winget.")
 
 # Create a counter to track which program we're installing
 counter = 1
+# Create counters to track installation results
+installed_count = 0
+already_installed_count = 0
+failed_count = 0
 
 # Loop through each program in the list
 for program_id in programs:
@@ -45,12 +49,26 @@ for program_id in programs:
     # Check if the program was already installed by looking at winget's output
     if "already installed" in result.stdout.lower():
         print(f"{program_id} is already installed.")
+        already_installed_count += 1
     # Check if the installation succeeded (returncode 0 means success)
     elif result.returncode == 0:
         print(f"Installed {program_id} successfully.")
+        installed_count += 1
     # If we get here, something went wrong
     else:
         print(f"Failed to install {program_id}.")
+        failed_count += 1
     
     # Increment the counter for the next program (shorthand for counter = counter + 1)
     counter += 1
+
+# Print summary of installation results
+print("\n" + "="*50)
+print("INSTALLATION SUMMARY")
+print("="*50)
+print(f"Total programs processed: {len(programs)}")
+print(f"Successfully installed: {installed_count}")
+print(f"Already installed: {already_installed_count}")
+print(f"Failed to install: {failed_count}")
+print("="*50)
+
