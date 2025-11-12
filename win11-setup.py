@@ -3,15 +3,16 @@ import subprocess
 
 # List of programs to install using their winget package IDs
 programs = [
-    "Python.Python.3.11",
+    "Python.Python.3.13",
     "Microsoft.WindowsTerminal",
     "Microsoft.VisualStudioCode",
-    “Microsoft.PowerShell”,
+    "Microsoft.PowerShell",
     "Mozilla.Firefox",
     "Microsoft.PowerToys",
     "Google.Chrome",
     "Git.Git",
-    "OpenJS.NodeJS.LTS”,
+    "GitHub.GitHubDesktop",
+    "OpenJS.NodeJS.LTS",
     "VideoLAN.VLC",
     "7zip.7zip"
 ]
