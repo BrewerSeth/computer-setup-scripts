@@ -76,6 +76,11 @@ print("="*50)
 
 # Now update only the programs in our list to ensure they are on the latest version
 print("\nNow updating programs from the installation list to latest versions...")
+
+# Create counters to track update results
+updated_count = 0
+already_latest_count = 0
+
 for program_id in programs:
     print(f"Updating {program_id}...")
     update_result = subprocess.run(
@@ -83,6 +88,21 @@ for program_id in programs:
         capture_output=True,
         text=True
     )
+    
+    # Check if the program was already at the latest version
+    if "No applicable update found" in update_result.stdout or "No installed package found" in update_result.stdout:
+        already_latest_count += 1
+    # Check if the update succeeded (returncode 0 means success)
+    elif update_result.returncode == 0:
+        updated_count += 1
 
 print("\nUpdate process completed for all programs in the list.")
+
+# Print summary of update results
+print("\n" + "="*50)
+print("UPDATE SUMMARY")
+print("="*50)
+print(f"Programs updated: {updated_count}")
+print(f"Already on latest version: {already_latest_count}")
+print("="*50)
 
