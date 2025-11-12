@@ -72,3 +72,16 @@ print(f"Already installed: {already_installed_count}")
 print(f"Failed to install: {failed_count}")
 print("="*50)
 
+# Now update all programs to ensure they are on the latest version
+print("\nNow updating all installed programs to latest versions...")
+update_result = subprocess.run(
+    ["winget", "upgrade", "--all", "-h", "--accept-package-agreements", "--accept-source-agreements"],
+    capture_output=True,
+    text=True
+)
+
+# Print update completion message
+print("\nUpdate process completed.")
+print("\nWinget update output:")
+print(update_result.stdout)
+
